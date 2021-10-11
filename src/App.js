@@ -1,28 +1,19 @@
 import React from "react";
-
-function Food( {name, image}) {
-  return <div>
-    <h1>I Like {name}</h1>
-    <img src={image} alt="" />
-  </div>
-}
-
-const foodILike = [
-  {
-  name: "Kimchi",
-  image: "https://kstory365.files.wordpress.com/2015/01/kimchi-01-cabbage.jpg"
-  },
-  {
-  name: "samgyetang",
-  image: "https://img.seoul.co.kr//img/upload/2019/07/25/SSI_20190725184016.jpg"
-  }
-]
+import { HashRouter, Route } from "react-router-dom";
+import Home from "./routes/Home";
+import About from "./routes/About";
+import Detail from "./routes/Detail";
+import Navigation from "./components/Navigation";
+import "./App.css";
 
 function App() {
   return (
-    <div>
-    {foodILike.map(dish => ( <Food name = {dish.name} image = {dish.image} /> ))}
-  </div>
+    <HashRouter>
+      <Navigation />
+      <Route path="/" exact={true} component={Home} />
+      <Route path="/about" component={About} />
+      <Route path="/movie/:id" component={Detail} />
+    </HashRouter>
   );
 }
 
